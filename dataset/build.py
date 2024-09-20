@@ -6,6 +6,7 @@ import torch
 from easydict import EasyDict as edict
 from openpoints.utils import registry
 from openpoints.transforms import build_transforms_from_cfg
+import pdb
 
 DATASETS = registry.Registry('dataset')
 

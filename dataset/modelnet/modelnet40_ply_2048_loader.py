@@ -15,12 +15,15 @@ import torch
 from torch.utils.data import Dataset
 from torchvision.datasets.utils import extract_archive, check_integrity
 from ..build import DATASETS
+import pdb
 
 
 def download_and_extract_archive(url, path, md5=None):
     # Works when the SSL certificate is expired for the link
     path = Path(path)
     extract_path = path
+    # pdb.set_trace()
+
     if not path.exists():
         path.mkdir(parents=True, exist_ok=True)
         file_path = path / Path(url).name
@@ -46,6 +49,7 @@ def load_data(data_dir, partition, url):
     download_and_extract_archive(url, data_dir)
     all_data = []
     all_label = []
+    # pdb.set_trace()
     for h5_name in glob.glob(os.path.join(data_dir, 'modelnet40_ply_hdf5_2048', 'ply_data_%s*.h5' % partition)):
         with h5py.File(h5_name, 'r') as f:
             data = f['data'][:].astype('float32')
