@@ -8,6 +8,7 @@ import torch
 import torch.nn as nn
 from torch.autograd import Function
 from openpoints.cpp import pointnet2_cuda
+import pdb
 
 class KNN(nn.Module):
     def __init__(self, neighbors, transpose_mode=True):
@@ -193,6 +194,7 @@ class BallQuery(Function):
         npoint = new_xyz.size(1)
         idx = torch.cuda.IntTensor(B, npoint, nsample, device=xyz.device).zero_()
         pointnet2_cuda.ball_query_wrapper(B, N, npoint, radius, nsample, new_xyz, xyz, idx)
+        pdb.set_trace()
         return idx
 
     @staticmethod
