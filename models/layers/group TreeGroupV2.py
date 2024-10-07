@@ -295,7 +295,7 @@ def Tree_group_depth10_config(xyz, nsample, new_xyz, radius, FPS_th):
                                             if (FPS_2dL_L3[l]==1):
                                                 centerXYZ, centerXYZ_size = selectAfromB(xyz_L3, new_xyz[i,:,:].unsqueeze(0))
                                                 if(centerXYZ_size != 0):
-                                                    group_from_xyz = xyz_L1 # group source
+                                                    group_from_xyz = xyz_L2 # group source
                                                     group_from_xyz_N = group_from_xyz.size(1)
                                                     idx = torch.cuda.IntTensor(1, centerXYZ_size, nsample, device=xyz.device).zero_()
                                                     pointnet2_cuda.ball_query_wrapper(1, group_from_xyz_N, centerXYZ_size, radius, nsample, centerXYZ, group_from_xyz, idx)
@@ -310,7 +310,7 @@ def Tree_group_depth10_config(xyz, nsample, new_xyz, radius, FPS_th):
                                                         if (FPS_2dL_L4[m]==1):
                                                             centerXYZ, centerXYZ_size = selectAfromB(xyz_L4, new_xyz[i,:,:].unsqueeze(0)) # group source
                                                             if(centerXYZ_size != 0):
-                                                                group_from_xyz = xyz_L2 # group source
+                                                                group_from_xyz = xyz_L3 # group source
                                                                 group_from_xyz_N = group_from_xyz.size(1)
                                                                 idx = torch.cuda.IntTensor(1, centerXYZ_size, nsample, device=xyz.device).zero_()
                                                                 pointnet2_cuda.ball_query_wrapper(1, group_from_xyz_N, centerXYZ_size, radius, nsample, centerXYZ, group_from_xyz, idx)
@@ -325,7 +325,7 @@ def Tree_group_depth10_config(xyz, nsample, new_xyz, radius, FPS_th):
                                                                     if (FPS_2dL_L5[n]==1):
                                                                         centerXYZ, centerXYZ_size = selectAfromB(xyz_L5, new_xyz[i,:,:].unsqueeze(0)) # group source
                                                                         if(centerXYZ_size != 0):
-                                                                            group_from_xyz = xyz_L3 # group source
+                                                                            group_from_xyz = xyz_L4 # group source
                                                                             group_from_xyz_N = group_from_xyz.size(1)
                                                                             idx = torch.cuda.IntTensor(1, centerXYZ_size, nsample, device=xyz.device).zero_()
                                                                             pointnet2_cuda.ball_query_wrapper(1, group_from_xyz_N, centerXYZ_size, radius, nsample, centerXYZ, group_from_xyz, idx)
@@ -340,7 +340,7 @@ def Tree_group_depth10_config(xyz, nsample, new_xyz, radius, FPS_th):
                                                                                 if (FPS_2dL_L6[o]==1):
                                                                                     centerXYZ, centerXYZ_size = selectAfromB(xyz_L6, new_xyz[i,:,:].unsqueeze(0)) # group source
                                                                                     if(centerXYZ_size != 0):
-                                                                                        group_from_xyz = xyz_L4 # group source
+                                                                                        group_from_xyz = xyz_L5 # group source
                                                                                         group_from_xyz_N = group_from_xyz.size(1)
                                                                                         idx = torch.cuda.IntTensor(1, centerXYZ_size, nsample, device=xyz.device).zero_()
                                                                                         pointnet2_cuda.ball_query_wrapper(1, group_from_xyz_N, centerXYZ_size, radius, nsample, centerXYZ, group_from_xyz, idx)
@@ -355,7 +355,7 @@ def Tree_group_depth10_config(xyz, nsample, new_xyz, radius, FPS_th):
                                                                                             if (FPS_2dL_L7[p]==1):
                                                                                                 centerXYZ, centerXYZ_size = selectAfromB(xyz_L7, new_xyz[i,:,:].unsqueeze(0)) # group source
                                                                                                 if(centerXYZ_size != 0):
-                                                                                                    group_from_xyz = xyz_L5 # group source
+                                                                                                    group_from_xyz = xyz_L6 # group source
                                                                                                     group_from_xyz_N = group_from_xyz.size(1)
                                                                                                     idx = torch.cuda.IntTensor(1, centerXYZ_size, nsample, device=xyz.device).zero_()
                                                                                                     pointnet2_cuda.ball_query_wrapper(1, group_from_xyz_N, centerXYZ_size, radius, nsample, centerXYZ, group_from_xyz, idx)
@@ -370,7 +370,7 @@ def Tree_group_depth10_config(xyz, nsample, new_xyz, radius, FPS_th):
                                                                                                         if (FPS_2dL_L8[q]==1):
                                                                                                             centerXYZ, centerXYZ_size = selectAfromB(xyz_L8, new_xyz[i,:,:].unsqueeze(0)) # group source
                                                                                                             if(centerXYZ_size != 0):
-                                                                                                                group_from_xyz = xyz_L6 # group source
+                                                                                                                group_from_xyz = xyz_L7 # group source
                                                                                                                 group_from_xyz_N = group_from_xyz.size(1)
                                                                                                                 idx = torch.cuda.IntTensor(1, centerXYZ_size, nsample, device=xyz.device).zero_()
                                                                                                                 pointnet2_cuda.ball_query_wrapper(1, group_from_xyz_N, centerXYZ_size, radius, nsample, centerXYZ, group_from_xyz, idx)
@@ -385,7 +385,7 @@ def Tree_group_depth10_config(xyz, nsample, new_xyz, radius, FPS_th):
                                                                                                                     if (FPS_2dL_L9[r]==1):
                                                                                                                         centerXYZ, centerXYZ_size = selectAfromB(xyz_L9, new_xyz[i,:,:].unsqueeze(0)) # group source
                                                                                                                         if(centerXYZ_size != 0):
-                                                                                                                            group_from_xyz = xyz_L7 # group source
+                                                                                                                            group_from_xyz = xyz_L8 # group source
                                                                                                                             group_from_xyz_N = group_from_xyz.size(1)
                                                                                                                             idx = torch.cuda.IntTensor(1, centerXYZ_size, nsample, device=xyz.device).zero_()
                                                                                                                             pointnet2_cuda.ball_query_wrapper(1, group_from_xyz_N, centerXYZ_size, radius, nsample, centerXYZ, group_from_xyz, idx)
@@ -399,7 +399,7 @@ def Tree_group_depth10_config(xyz, nsample, new_xyz, radius, FPS_th):
                                                                                                                                 xyz_L10 = xyz_2dL_L10[s]
                                                                                                                                 centerXYZ, centerXYZ_size = selectAfromB(xyz_L10, new_xyz[i,:,:].unsqueeze(0)) # group source
                                                                                                                                 if(centerXYZ_size != 0):
-                                                                                                                                    group_from_xyz = xyz_L8 # group source
+                                                                                                                                    group_from_xyz = xyz_L9 # group source
                                                                                                                                     group_from_xyz_N = group_from_xyz.size(1)
                                                                                                                                     idx = torch.cuda.IntTensor(1, centerXYZ_size, nsample, device=xyz.device).zero_()
                                                                                                                                     pointnet2_cuda.ball_query_wrapper(1, group_from_xyz_N, centerXYZ_size, radius, nsample, centerXYZ, group_from_xyz, idx)
@@ -441,20 +441,8 @@ class BallQuery(Function):
         B, N, _ = xyz.size()
         npoint = new_xyz.size(1)
 
-        if(npoint == 512):
-            group_th = 32
-            idx = Tree_group_depth10_config(xyz, nsample, new_xyz, radius, group_th)
-            idx=idx.int()
-        elif npoint == 256:
-            group_th = 32
-            idx = Tree_group_depth10_config(xyz, nsample, new_xyz, radius, group_th)
-            idx=idx.int()
-        elif npoint == 128:
-            group_th = 32
-            idx = Tree_group_depth10_config(xyz, nsample, new_xyz, radius, group_th)
-            idx=idx.int()
-        elif npoint == 64:
-            group_th = 32
+        if(npoint == 256):
+            group_th = 64
             idx = Tree_group_depth10_config(xyz, nsample, new_xyz, radius, group_th)
             idx=idx.int()
         else:

@@ -7,6 +7,7 @@ from torch.autograd import Function
 import math
 from openpoints.cpp.pointnet2_batch import pointnet2_cuda
 import pdb
+import asyncio
 
 class BaseSampler(ABC):
     """If num_to_sample is provided, sample exactly
@@ -111,7 +112,6 @@ def checkTotalNum(PredNumList, npoint):
         PredNumList[max_position] = PredNumList[max_position] + dif
     return PredNumList
 
-
 def adjust_list_to_sum(numbers, target_sum):
     # 计算列表的当前总和
     current_sum = sum(numbers)
@@ -124,26 +124,13 @@ def adjust_list_to_sum(numbers, target_sum):
     difference = target_sum - current_sum
 
     # 将列表中的元素按降序排序，并保留原始索引
-    sorted_indices = sorted(range(len(numbers)), key=lambda i: numbers[i], reverse=True)
-
-    # 从最大值开始，尝试逐步调整
-    for i in range(len(sorted_indices)):
-        index = sorted_indices[i]
-        max_possible_adjustment = numbers[index] + difference
-        if max_possible_adjustment >= 0:
-            numbers[index] += difference
-            return numbers
-        else:
-            # 如果减去差值后为负，则将负数的绝对值转移到下一个元素
-            difference += numbers[index]
-            numbers[index] = 0  # 当前元素设置为0，因为它无法承担更多的减少
+    if(numbers[0] < numbers[1]):
+        numbers[1] += difference
+    else:
+        numbers[0] += difference 
 
     # 检查是否所有差值都已经被处理
-    if difference == 0:
-        return numbers
-    else:
-        raise ValueError("调整后的列表将包含负数，无法通过调整达到目标和。")
-
+    return numbers
 
 # ################ block partition with different directions and count the size
 def part2_and_count(xyz, batch_size, FPS_th, TreeDepth):
@@ -342,7 +329,6 @@ def TreeBlock_fps_depth10_config(xyz, npoint, FPS_th):
             pdb.set_trace()
 
     return SampXyz_indx
-
 
 class FurthestPointSampling(Function):
     counter = 0
