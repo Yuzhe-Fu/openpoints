@@ -119,7 +119,7 @@ def adjust_list_to_sum(numbers, target_sum):
 def TreeBlock_fps_recursive_config(xyz, npoint, FPS_th, tree_depth=0, global_index=None, executor=None):
     if executor is None:
         # Create a single ThreadPoolExecutor to be shared
-        with ThreadPoolExecutor(max_workers=256) as executor:
+        with ThreadPoolExecutor(max_workers=1024) as executor:
             return TreeBlock_fps_recursive_config(xyz, npoint, FPS_th, tree_depth, global_index, executor)
 
     if xyz.ndim == 3:
@@ -249,14 +249,16 @@ class FurthestPointSampling(Function):
         #     pointnet2_cuda.furthest_point_sampling_wrapper(B, N, npoint, xyz, temp, output)
 
 
-        if npoint==512:
+        if npoint==11839:
             # output = TreeBlock_fps_depth10_config(xyz, npoint, 32).to('cuda:0')# actually spar 16 in algrithom 
             _, output = TreeBlock_fps_recursive_config(xyz, npoint, 32)
+            # pdb.set_trace()
             # output = domain_fps_8block_sparto16(xyz, 8, npoint) # actually spar 16 in algrithom
             # output = fps_myown_seg(xyz, 16, npoint)
-        # elif npoint == 256:
-        #     output = TreeBlock_fps_recursive_config(xyz, npoint, 32).to('cuda:0')# actually spar 16 in algrithom 
-        #     # output = fps_myown_seg(xyz, 8, npoint)
+        elif npoint == 2959:
+            pdb.set_trace()
+            _, output = TreeBlock_fps_recursive_config(xyz, npoint, 32)
+            # output = fps_myown_seg(xyz, 8, npoint)
         # elif npoint == 128:
         #     output = TreeBlock_fps_recursive_config(xyz, npoint, 16).to('cuda:0')# actually spar 16 in algrithom 
         #     # output = fps_myown_seg(xyz, 4, npoint)
